@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация — Greatest Diary</title>
+</head>
+<body>
+<form method="post" action="/registration" th:object="${registrationForm}">
+    <div>
+        <label for="name">Имя</label>
+        <input id="name" type="text" th:field="*{name}"/>
+    </div>
+
+    <div>
+        <label for="email">Почта</label>
+        <input id="email" type="email" th:field="*{email}"/>
+    </div>
+
+    <div>
+        <label for="password">Пароль</label>
+        <input id="password" type="password" th:field="*{password}"/>
+    </div>
+
+    <div>
+        <label for="confirmPassword">Подтверждение пароля</label>
+        <input id="confirmPassword" type="password" th:field="*{confirmPassword}"/>
+    </div>
+
+    <div>
+        <input id="csrfToken" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" type="hidden"/>
+        <button type="submit">Зарегистрироваться</button>
+    </div>
+</form>
+<div>
+    <a href="/login">Уже есть аккаунт?</a>
+</div>
+</body>
+</html>
