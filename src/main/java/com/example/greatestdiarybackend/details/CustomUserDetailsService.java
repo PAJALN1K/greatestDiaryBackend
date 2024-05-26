@@ -1,10 +1,10 @@
 package com.example.greatestdiarybackend.details;
 
-import com.example.greatestdiarybackend.entities.roles.Role;
 import com.example.greatestdiarybackend.entities.User;
+import com.example.greatestdiarybackend.entities.roles.Role;
 import com.example.greatestdiarybackend.services.UserService;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.lang.NonNull;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,18 +17,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class CustomUserDetailsServer implements UserDetailsService {
+public class CustomUserDetailsService implements UserDetailsService {
     private final UserService userService;
 
     @Autowired
-    public CustomUserDetailsServer(UserService userService) {
+    public CustomUserDetailsService(UserService userService) {
         this.userService = userService;
     }
 
     @Override
     @Transactional(readOnly = true)
-    public UserDetails loadUserByUsername(@NonNull String username) throws UsernameNotFoundException {
-        User user = userService.getUserByEmail(username);
+    public UserDetails loadUserByUsername(@NotNull String username) throws UsernameNotFoundException {
+        User user = userService.getUserByName(username);
 
         List<GrantedAuthority> roles = getGrantedAuthorities(user);
 
@@ -38,7 +38,7 @@ public class CustomUserDetailsServer implements UserDetailsService {
         );
     }
 
-    private List<GrantedAuthority> getGrantedAuthorities(@NonNull User user) {
+    private List<GrantedAuthority> getGrantedAuthorities(@NotNull User user) {
         List<GrantedAuthority> role = new ArrayList<>();
         role.add(new SimpleGrantedAuthority(user.isEnable() ? user.getRole() : Role.BANNED.getAuthority()));
 

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Личный кабинет - Greatest Diary</title>
+</head>
+<body>
+<h1>Личный кабинет</h1>
+<p>Имя: <p th:text="${authenticatedUser.getName()}"></p></p>
+<p>Почта: <p th:text="${authenticatedUser.getEmail()}"></p></p>
+
+<div>
+    <a th:href="@{/profile/{name}/password(name=${authenticatedUser.getName()})}">Изменить пароль</a>
+</div>
+
+<form action="/logout" method="post">
+    <input id="csrfToken" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" type="hidden"/>
+    <button type="submit">Выйти из аккаунта</button>
+</form>
+</body>
+</html>
