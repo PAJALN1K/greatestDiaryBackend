@@ -32,25 +32,46 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    public Optional<User> findUserByName(String name) {
+        return userRepository.findByName(name);
+    }
+
+    @Override
     public User getUserByEmail(String email) {
         return findUserByEmail(email)
-                .orElseThrow(() -> new EntityNotFoundException("Пользователя с такой почтой " + email + " не существует!"));
+                .orElseThrow(() -> new EntityNotFoundException("Пользователя с почтой '" + email + "' не существует!"));
+    }
+
+    @Override
+    public User getUserByName(String name) {
+        return findUserByName(name)
+                .orElseThrow(() -> new EntityNotFoundException("Пользователя c ником '" + name + "' не существует!"));
     }
 
     @Override
     public void save(User user) {
         userRepository.save(user);
+
         logger.log(Level.INFO, "Пользователь с почтой {0} успешно сохранен", user.getEmail());
     }
 
     @Override
     public User create(RegistrationForm form) {
-        return new User()
+        User createdUser = new User()
                 .setEmail(form.getEmail())
                 .setName(form.getName())
                 .setPassword(encoder.encode(form.getPassword()))
                 .setRole(Role.USER.getAuthority())
                 .setEnable(true)
                 .setNonLocked(true);
+        logger.log(Level.INFO, "Пользователь с именем {0} успешно создан", createdUser.getName());
+
+        return createdUser;
+    }
+
+    @Override
+    public void updatePassword(String oldPassword, User authenticatedUser) {
+        User userAfterUpdatePassword = authenticatedUser.setPassword(encoder.encode(oldPassword));
+        save(userAfterUpdatePassword);
     }
 }

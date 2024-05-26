@@ -8,20 +8,20 @@ import java.util.Collection;
 import java.util.List;
 
 public class CustomUserDetails implements UserDetails {
-    private String email;
+    private String name;
     private String password;
     private List<GrantedAuthority> roles;
     private boolean enable;
     private boolean nonLocked;
 
     public CustomUserDetails(
-            String email,
+            String name,
             String password,
             List<GrantedAuthority> roles,
             boolean enable,
             boolean nonLocked
     ) {
-        this.email = email;
+        this.name = name;
         this.password = password;
         this.roles = roles;
         this.enable = enable;
@@ -53,7 +53,7 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public String getUsername() {
-        return email;
+        return name;
     }
 
     @Override
