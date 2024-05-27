@@ -1,7 +1,8 @@
-package com.example.greatestdiarybackend.services;
+package com.example.greatestdiarybackend.services.authentication;
 
 import com.example.greatestdiarybackend.details.CustomUserDetailsService;
 import com.example.greatestdiarybackend.entities.User;
+import com.example.greatestdiarybackend.services.user.UserService;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

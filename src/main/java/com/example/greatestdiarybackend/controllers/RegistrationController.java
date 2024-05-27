@@ -2,7 +2,7 @@ package com.example.greatestdiarybackend.controllers;
 
 import com.example.greatestdiarybackend.entities.User;
 import com.example.greatestdiarybackend.forms.RegistrationForm;
-import com.example.greatestdiarybackend.services.UserService;
+import com.example.greatestdiarybackend.services.user.UserService;
 import com.example.greatestdiarybackend.utils.RedirectUtil;
 import com.example.greatestdiarybackend.validators.RegistrationValidator;
 import jakarta.validation.Valid;

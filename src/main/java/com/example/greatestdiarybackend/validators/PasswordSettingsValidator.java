@@ -1,7 +1,7 @@
 package com.example.greatestdiarybackend.validators;
 
 import com.example.greatestdiarybackend.forms.PasswordSettingsForm;
-import com.example.greatestdiarybackend.utils.PasswordSettingsUtil;
+import com.example.greatestdiarybackend.utils.valid.PasswordSettingsUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;

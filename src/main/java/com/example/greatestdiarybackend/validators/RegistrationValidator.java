@@ -1,7 +1,7 @@
 package com.example.greatestdiarybackend.validators;
 
 import com.example.greatestdiarybackend.forms.RegistrationForm;
-import com.example.greatestdiarybackend.utils.RegistrationUtil;
+import com.example.greatestdiarybackend.utils.valid.RegistrationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;

@@ -2,7 +2,7 @@ package com.example.greatestdiarybackend.details;
 
 import com.example.greatestdiarybackend.entities.User;
 import com.example.greatestdiarybackend.entities.roles.Role;
-import com.example.greatestdiarybackend.services.UserService;
+import com.example.greatestdiarybackend.services.user.UserService;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;

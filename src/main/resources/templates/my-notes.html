@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Заметки - Greatest Diary</title>
+</head>
+<body>
+<div>
+    <h1>Мои заметки</h1>
+    <div th:if="${notes.isEmpty()}">
+        <p>У вас нет заметок</p>
+        <a href="/note/create">Создайте вашу первую заметку</a>
+    </div>
+    <div th:unless="${notes.isEmpty()}">
+        <ul>
+            <li th:each="note : ${notes}">
+                <a th:href="@{/note/{uuid}(uuid=${note.getUuid()})}">
+                    <p th:text="${note.getDate()}">Дата</p>
+                    <p th:text="${note.getLocation()}">Местоположение создания заметки</p>
+                    <p th:text="${note.getDescription()}">Описание</p>
+                    <p th:text="${note.getEmojiName()}">Эмоция</p>
+                </a>
+            </li>
+        </ul>
+        <a href="/note/create">Добавить заметку</a>
+    </div>
+</div>
+</body>
+</html>
