@@ -2,8 +2,8 @@ package com.example.greatestdiarybackend.controllers;
 
 import com.example.greatestdiarybackend.entities.User;
 import com.example.greatestdiarybackend.models.UserModel;
-import com.example.greatestdiarybackend.services.AuthenticatedUserService;
-import com.example.greatestdiarybackend.services.ModelService;
+import com.example.greatestdiarybackend.services.authentication.AuthenticatedUserService;
+import com.example.greatestdiarybackend.services.model.ModelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

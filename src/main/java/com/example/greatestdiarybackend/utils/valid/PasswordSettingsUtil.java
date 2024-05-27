@@ -1,7 +1,6 @@
-package com.example.greatestdiarybackend.utils;
+package com.example.greatestdiarybackend.utils.valid;
 
-import com.example.greatestdiarybackend.services.AuthenticatedUserService;
-import com.example.greatestdiarybackend.services.UserService;
+import com.example.greatestdiarybackend.services.authentication.AuthenticatedUserService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;

@@ -2,9 +2,9 @@ package com.example.greatestdiarybackend.controllers;
 
 import com.example.greatestdiarybackend.entities.User;
 import com.example.greatestdiarybackend.models.UserModel;
-import com.example.greatestdiarybackend.services.AuthenticatedUserService;
-import com.example.greatestdiarybackend.services.ModelService;
-import com.example.greatestdiarybackend.services.UserService;
+import com.example.greatestdiarybackend.services.authentication.AuthenticatedUserService;
+import com.example.greatestdiarybackend.services.model.ModelService;
+import com.example.greatestdiarybackend.services.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;

@@ -1,4 +1,4 @@
-package com.example.greatestdiarybackend.services;
+package com.example.greatestdiarybackend.services.user;
 
 import com.example.greatestdiarybackend.forms.RegistrationForm;
 import com.example.greatestdiarybackend.entities.roles.Role;
@@ -52,7 +52,7 @@ public class UserServiceImpl implements UserService{
     public void save(User user) {
         userRepository.save(user);
 
-        logger.log(Level.INFO, "Пользователь с почтой {0} успешно сохранен", user.getEmail());
+        logger.log(Level.INFO, "Пользователь с почтой '{0}' успешно сохранен", user.getEmail());
     }
 
     @Override
@@ -64,7 +64,7 @@ public class UserServiceImpl implements UserService{
                 .setRole(Role.USER.getAuthority())
                 .setEnable(true)
                 .setNonLocked(true);
-        logger.log(Level.INFO, "Пользователь с именем {0} успешно создан", createdUser.getName());
+        logger.log(Level.INFO, "Пользователь с именем '{0}' успешно создан", createdUser.getName());
 
         return createdUser;
     }

@@ -2,12 +2,18 @@ package com.example.greatestdiarybackend.entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Note> notes;
+
     private String email;
     private String name;
     private String password;
@@ -74,6 +80,15 @@ public class User {
 
     public User setNonLocked(boolean nonLocked) {
         this.nonLocked = nonLocked;
+        return this;
+    }
+
+    public List<Note> getNotes() {
+        return notes;
+    }
+
+    public User setNotes(List<Note> notes) {
+        this.notes = notes;
         return this;
     }
 }

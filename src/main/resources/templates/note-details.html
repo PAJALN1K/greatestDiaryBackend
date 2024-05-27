@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Моя заметка - Greatest Diary</title>
+</head>
+<body>
+<div>
+    <p th:text="${note.getDate()}">Дата</p>
+    <p th:text="${note.getLocation()}">Местоположение создания заметки</p>
+    <p th:text="${note.getDescription()}">Описание</p>
+    <p th:text="${note.getEmojiName()}">Эмоция</p>
+</div>
+</body>
+</html>

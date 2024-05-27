@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Создание заметки - Greatest Diary</title>
+</head>
+<body>
+<form method="post" action="/note/create" th:object="${noteForm}">
+    <div>
+        <label for="description">Описание</label>
+        <input id="description" type="text" th:field="*{description}"/>
+    </div>
+
+    <div>
+        <label for="date">Дата</label>
+        <input id="date" type="text" th:field="*{date}"/>
+    </div>
+
+    <div>
+        <label for="location">Местоположение</label>
+        <input id="location" type="text" th:field="*{location}"/>
+    </div>
+
+    <div>
+        <label for="emojiName">Название эмоции</label>
+        <input id="emojiName" type="text" th:field="*{emojiName}"/>
+    </div>
+
+    <div>
+        <input id="csrfToken" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" type="hidden"/>
+        <button type="submit">Создать заметку</button>
+    </div>
+</form>
+</body>
+</html>

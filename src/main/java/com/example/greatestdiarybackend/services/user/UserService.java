@@ -1,4 +1,4 @@
-package com.example.greatestdiarybackend.services;
+package com.example.greatestdiarybackend.services.user;
 
 import com.example.greatestdiarybackend.forms.RegistrationForm;
 import com.example.greatestdiarybackend.entities.User;

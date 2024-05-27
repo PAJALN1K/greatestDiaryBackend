@@ -1,7 +1,7 @@
-package com.example.greatestdiarybackend.utils;
+package com.example.greatestdiarybackend.utils.valid;
 
 import com.example.greatestdiarybackend.pattern.Patterns;
-import com.example.greatestdiarybackend.services.UserService;
+import com.example.greatestdiarybackend.services.user.UserService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

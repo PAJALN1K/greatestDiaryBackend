@@ -1,4 +1,4 @@
-package com.example.greatestdiarybackend.services;
+package com.example.greatestdiarybackend.services.authentication;
 
 import com.example.greatestdiarybackend.entities.User;
 import jakarta.validation.constraints.NotNull;
