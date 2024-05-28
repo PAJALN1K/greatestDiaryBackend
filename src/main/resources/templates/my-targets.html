@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Мои цели - Greatest Diary</title>
+</head>
+<body>
+<div>
+    <h1>Мои цели</h1>
+    <div th:if="${targets.isEmpty()}">
+        <p>У вас нет целей</p>
+        <a href="/target/create">Создайте вашу первую цель</a>
+    </div>
+    <div th:unless="${targets.isEmpty()}">
+        <ul>
+            <li th:each="target : ${targets}">
+                <a th:href="@{/target/{uuid}(uuid=${target.getUuid()})}">
+                    <p th:text="${target.getTitle()}">Наименование</p>
+                </a>
+            </li>
+        </ul>
+        <a href="/target/create">Добавить цель</a>
+    </div>
+</div>
+
+<a href="/home">Домой</a>
+</body>
+</html>

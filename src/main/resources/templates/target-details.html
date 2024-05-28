@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Моя цель - Greatest Diary</title>
+</head>
+<body>
+<div>
+  <p th:text="${target.getTitle()}">Наименование</p>
+  <p th:text="${target.getDescription()}">Описание</p>
+  <p th:text="${target.getPriority()}">Приоритет</p>
+  <p th:text="${target.getStatus()}">Статус</p>
+  <p th:text="${target.getStartDate()}">Дата старта</p>
+</div>
+
+<div>
+    <form th:action="@{'/target/' + ${target.uuid} + '/status'}" th:method="put">
+        <label for="status">Изменить статус:</label>
+        <select id="status" name="status">
+            <option th:each="status : ${status}" th:value="${status}" th:text="${status}"></option>
+        </select>
+        <input id="csrfToken" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" type="hidden"/>
+        <button type="submit">Обновить статус</button>
+    </form>
+</div>
+<a href="/target">Назад</a>
+</body>
+</html>

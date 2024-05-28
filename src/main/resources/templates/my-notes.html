@@ -15,10 +15,7 @@
         <ul>
             <li th:each="note : ${notes}">
                 <a th:href="@{/note/{uuid}(uuid=${note.getUuid()})}">
-                    <p th:text="${note.getDate()}">Дата</p>
-                    <p th:text="${note.getLocation()}">Местоположение создания заметки</p>
                     <p th:text="${note.getDescription()}">Описание</p>
-                    <p th:text="${note.getEmojiName()}">Эмоция</p>
                 </a>
             </li>
         </ul>
