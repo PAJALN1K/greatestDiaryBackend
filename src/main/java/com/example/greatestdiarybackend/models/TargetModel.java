@@ -1,50 +1,22 @@
-package com.example.greatestdiarybackend.entities;
+package com.example.greatestdiarybackend.models;
 
 import com.example.greatestdiarybackend.entities.statuses.Status;
-import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "purposes")
-public class Target {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-
+public class TargetModel {
     private String uuid;
     private String title;
     private String description;
-    private Integer priority;
+    private int priority;
     private Status status;
     private LocalDateTime startDate;
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public Target setUser(User user) {
-        this.user = user;
-        return this;
-    }
 
     public String getUuid() {
         return uuid;
     }
 
-    public Target setUuid(String uuid) {
+    public TargetModel setUuid(String uuid) {
         this.uuid = uuid;
         return this;
     }
@@ -53,7 +25,7 @@ public class Target {
         return title;
     }
 
-    public Target setTitle(String title) {
+    public TargetModel setTitle(String title) {
         this.title = title;
         return this;
     }
@@ -62,16 +34,16 @@ public class Target {
         return description;
     }
 
-    public Target setDescription(String description) {
+    public TargetModel setDescription(String description) {
         this.description = description;
         return this;
     }
 
-    public Integer getPriority() {
+    public int getPriority() {
         return priority;
     }
 
-    public Target setPriority(Integer priority) {
+    public TargetModel setPriority(int priority) {
         this.priority = priority;
         return this;
     }
@@ -80,7 +52,7 @@ public class Target {
         return status;
     }
 
-    public Target setStatus(Status status) {
+    public TargetModel setStatus(Status status) {
         this.status = status;
         return this;
     }
@@ -89,7 +61,7 @@ public class Target {
         return startDate;
     }
 
-    public Target setStartDate(LocalDateTime startDate) {
+    public TargetModel setStartDate(LocalDateTime startDate) {
         this.startDate = startDate;
         return this;
     }
