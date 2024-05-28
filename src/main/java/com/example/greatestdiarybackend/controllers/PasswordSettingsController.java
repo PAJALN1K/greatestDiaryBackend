@@ -50,7 +50,7 @@ public class PasswordSettingsController {
                 .addObject("authenticatedUser", authenticatedUserModel);
     }
 
-    @PostMapping("/profile/{name}/password")
+    @PutMapping("/profile/{name}/password")
     public ModelAndView passwordSettingsAction(
             @PathVariable String name,
             @ModelAttribute @Valid PasswordSettingsForm form,
@@ -58,6 +58,7 @@ public class PasswordSettingsController {
     ) {
         if (result.hasErrors()) {
             return new ModelAndView("change-password")
+                    .addObject("error", result.getAllErrors())
                     .addObject("passwordSettingsForm", new PasswordSettingsForm());
         }
         User authenticatedUser = authenticatedUserService.getAuthenticatedUser();

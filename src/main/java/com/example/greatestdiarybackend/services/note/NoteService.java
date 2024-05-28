@@ -11,4 +11,6 @@ public interface NoteService {
     Note findNoteByUuid(String uuid);
     Note createNote(NoteForm form, User authenticatedUser);
     void save(Note note);
+    void deleteByUuid(String uuid);
+    Note changeNote(NoteForm form, Note note);
 }

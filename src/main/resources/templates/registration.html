@@ -6,6 +6,12 @@
 </head>
 <body>
 <form method="post" action="/registration" th:object="${registrationForm}">
+    <div th:if="${error}">
+        <ul>
+            <li th:each="err : ${error}" th:text="${err.defaultMessage}"></li>
+        </ul>
+    </div>
+
     <div>
         <label for="name">Имя</label>
         <input id="name" type="text" th:field="*{name}"/>

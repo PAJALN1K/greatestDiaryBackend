@@ -14,6 +14,9 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Note> notes;
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Target> targets;
+
     private String email;
     private String name;
     private String password;
@@ -89,6 +92,15 @@ public class User {
 
     public User setNotes(List<Note> notes) {
         this.notes = notes;
+        return this;
+    }
+
+    public List<Target> getPurposes() {
+        return targets;
+    }
+
+    public User setPurposes(List<Target> targets) {
+        this.targets = targets;
         return this;
     }
 }

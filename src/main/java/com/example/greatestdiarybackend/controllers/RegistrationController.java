@@ -20,7 +20,10 @@ public class RegistrationController {
     private final RegistrationValidator registrationValidator;
 
     @Autowired
-    public RegistrationController(UserService userService, RegistrationValidator registrationValidator) {
+    public RegistrationController(
+            UserService userService,
+            RegistrationValidator registrationValidator
+    ) {
         this.userService = userService;
         this.registrationValidator = registrationValidator;
     }
@@ -43,6 +46,7 @@ public class RegistrationController {
     ) {
         if (result.hasErrors()) {
             return new ModelAndView("registration")
+                    .addObject("error", result.getAllErrors())
                     .addObject("registrationForm", new RegistrationForm());
         }
         User createdUser = userService.create(form);

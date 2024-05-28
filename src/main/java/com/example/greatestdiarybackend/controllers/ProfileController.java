@@ -19,14 +19,21 @@ public class ProfileController {
     private final UserService userService;
 
     @Autowired
-    public ProfileController(AuthenticatedUserService authenticatedUserService, ModelService modelService, UserService userService) {
+    public ProfileController(
+            AuthenticatedUserService authenticatedUserService,
+            ModelService modelService,
+            UserService userService
+    ) {
         this.authenticatedUserService = authenticatedUserService;
         this.modelService = modelService;
         this.userService = userService;
     }
 
     @GetMapping("/profile/{name}")
-    public ModelAndView userProfile(@PathVariable String name, Authentication authentication) {
+    public ModelAndView userProfile(
+            @PathVariable String name,
+            Authentication authentication
+    ) {
         User authenticatedUser = authenticatedUserService.getAuthenticatedUser();
         UserModel authenticatedUserModel = modelService.getUserModel(authenticatedUser);
 

@@ -11,5 +11,15 @@
     <p th:text="${note.getDescription()}">Описание</p>
     <p th:text="${note.getEmojiName()}">Эмоция</p>
 </div>
+<div>
+    <form th:action="@{/note/{uuid}/delete(uuid=${note.getUuid()})}" th:method="delete">
+        <input id="csrfToken" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" type="hidden"/>
+        <button type="submit">Удалить заметку</button>
+    </form>
+</div>
+
+<div>
+    <a th:href="@{/note/{uuid}/change(uuid=${note.getUuid()})}">Изменить детали заметки</a>
+</div>
 </body>
 </html>

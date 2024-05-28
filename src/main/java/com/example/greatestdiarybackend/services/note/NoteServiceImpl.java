@@ -6,6 +6,8 @@ import com.example.greatestdiarybackend.forms.NoteForm;
 import com.example.greatestdiarybackend.repositories.NoteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.UUID;
@@ -51,6 +53,24 @@ public class NoteServiceImpl implements NoteService {
     public void save(Note note) {
         logger.log(Level.INFO, "Заметка успешно сохранена");
         noteRepository.save(note);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public void deleteByUuid(String uuid) {
+        logger.log(Level.INFO, "Заметка удалена успешно");
+        noteRepository.deleteByUuid(uuid);
+    }
+
+    @Override
+    public Note changeNote(NoteForm form, Note note) {
+        note
+                .setDate(form.getDate())
+                .setDescription(form.getDescription())
+                .setLocation(form.getLocation())
+                .setEmojiName(form.getEmojiName());
+
+        return note;
     }
 
     private String generateUuid() {
