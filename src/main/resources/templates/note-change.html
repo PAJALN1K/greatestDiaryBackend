@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Создание заметки - Greatest Diary</title>
+    <title>Изменение - Greatest Diary</title>
 </head>
 <body>
-<form method="post" action="/note/create" th:object="${noteForm}">
+<form th:action="@{/note/{uuid}/change(uuid=${note.getUuid()})}" th:method="put">
     <div th:if="${error}">
         <ul>
             <li th:each="err : ${error}" th:text="${err.defaultMessage}"></li>
@@ -14,27 +14,27 @@
 
     <div>
         <label for="description">Описание</label>
-        <input id="description" type="text" th:field="*{description}"/>
+        <input id="description" type="text" name="description" th:value="${note.getDescription()}"/>
     </div>
 
     <div>
         <label for="date">Дата</label>
-        <input id="date" type="text" th:field="*{date}"/>
+        <input id="date" type="text" name="date" th:value="${note.getDate()}"/>
     </div>
 
     <div>
         <label for="location">Местоположение</label>
-        <input id="location" type="text" th:field="*{location}"/>
+        <input id="location" type="text" name="location" th:value="${note.getLocation()}"/>
     </div>
 
     <div>
         <label for="emojiName">Название эмоции</label>
-        <input id="emojiName" type="text" th:field="*{emojiName}"/>
+        <input id="emojiName" type="text" name="emojiName" th:value="${note.getEmojiName()}"/>
     </div>
 
     <div>
         <input id="csrfToken" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" type="hidden"/>
-        <button type="submit">Создать заметку</button>
+        <button type="submit">Изменить заметку</button>
     </div>
 </form>
 </body>

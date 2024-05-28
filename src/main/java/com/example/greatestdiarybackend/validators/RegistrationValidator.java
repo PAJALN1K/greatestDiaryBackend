@@ -37,7 +37,7 @@ public class RegistrationValidator implements Validator {
         if (!registrationUtil.validateEmail(form.getEmail())) {
             errors.rejectValue(
                     "email",
-                    "error.registration.name.valid"
+                    "error.registration.email.valid"
             );
         }
 

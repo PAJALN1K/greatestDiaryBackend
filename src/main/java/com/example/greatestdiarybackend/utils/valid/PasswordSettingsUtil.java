@@ -20,7 +20,10 @@ public class PasswordSettingsUtil {
         this.authenticatedUserService = authenticatedUserService;
     }
 
-    public boolean validateOldPassword(String oldPassword, String newPassword) {
+    public boolean validateOldPassword(
+            String oldPassword,
+            String newPassword
+    ) {
         if (StringUtils.isBlank(oldPassword) || StringUtils.isBlank(newPassword)) {
             return false;
         }
@@ -48,7 +51,10 @@ public class PasswordSettingsUtil {
         return true;
     }
 
-    public boolean validateConfirmPassword(String confirmPassword, String newPassword) {
+    public boolean validateConfirmPassword(
+            String confirmPassword,
+            String newPassword
+    ) {
         if (StringUtils.isBlank(confirmPassword) || StringUtils.isBlank(newPassword)) {
             return false;
         }

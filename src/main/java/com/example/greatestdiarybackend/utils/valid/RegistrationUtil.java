@@ -47,7 +47,10 @@ public class RegistrationUtil {
         return true;
     }
 
-    public boolean validatePassword(String password, String confirmPassword) {
+    public boolean validatePassword(
+            String password,
+            String confirmPassword
+    ) {
         if (StringUtils.isBlank(password) || StringUtils.isBlank(confirmPassword)) {
             return false;
         }

@@ -15,7 +15,10 @@ public class HomeController {
     private final ModelService modelService;
 
     @Autowired
-    public HomeController(AuthenticatedUserService authenticatedUserService, ModelService modelService) {
+    public HomeController(
+            AuthenticatedUserService authenticatedUserService,
+            ModelService modelService
+    ) {
         this.authenticatedUserService = authenticatedUserService;
         this.modelService = modelService;
     }

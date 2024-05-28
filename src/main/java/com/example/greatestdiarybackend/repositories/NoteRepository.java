@@ -10,4 +10,5 @@ import java.util.List;
 public interface NoteRepository extends CrudRepository<Note, Long> {
     List<Note> findNotesByUserId(Long id);
     Note findNoteByUuid(String uuid);
+    void deleteByUuid(String uuid);
 }

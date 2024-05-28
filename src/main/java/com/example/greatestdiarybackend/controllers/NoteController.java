@@ -8,10 +8,12 @@ import com.example.greatestdiarybackend.services.authentication.AuthenticatedUse
 import com.example.greatestdiarybackend.services.model.ModelService;
 import com.example.greatestdiarybackend.services.note.NoteService;
 import com.example.greatestdiarybackend.utils.RedirectUtil;
+import com.example.greatestdiarybackend.validators.NoteValidator;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -23,12 +25,24 @@ public class NoteController {
     private final NoteService noteService;
     private final ModelService modelService;
     private final AuthenticatedUserService authenticatedUserService;
+    private final NoteValidator noteValidator;
 
     @Autowired
-    public NoteController(NoteService noteService, ModelService modelService, AuthenticatedUserService authenticatedUserService) {
+    public NoteController(
+            NoteService noteService,
+            ModelService modelService,
+            AuthenticatedUserService authenticatedUserService,
+            NoteValidator noteValidator
+    ) {
         this.noteService = noteService;
         this.modelService = modelService;
         this.authenticatedUserService = authenticatedUserService;
+        this.noteValidator = noteValidator;
+    }
+
+    @InitBinder("noteForm")
+    public void setNoteForm(WebDataBinder binder) {
+        binder.addValidators(noteValidator);
     }
 
 
@@ -63,6 +77,7 @@ public class NoteController {
     ) {
         if (result.hasErrors()) {
             return new ModelAndView("create-note")
+                    .addObject("error", result.getAllErrors())
                     .addObject("noteForm", new NoteForm());
         }
         User authenticatedUser = authenticatedUserService.getAuthenticatedUser();
@@ -70,5 +85,40 @@ public class NoteController {
         noteService.save(newNote);
 
         return RedirectUtil.redirect("/note");
+    }
+
+    @DeleteMapping("/{uuid}/delete")
+    public ModelAndView noteDeleteAction(@PathVariable String uuid) {
+        noteService.deleteByUuid(uuid);
+
+        return RedirectUtil.redirect("/note");
+    }
+
+    @GetMapping("/{uuid}/change")
+    public ModelAndView noteChangeForm(@PathVariable String uuid) {
+        Note note = noteService.findNoteByUuid(uuid);
+        NoteModel noteModel = modelService.createNoteModel(note);
+
+        return new ModelAndView("note-change")
+                .addObject("noteForm", new NoteForm())
+                .addObject("note", noteModel);
+    }
+
+    @PutMapping("/{uuid}/change")
+    public ModelAndView noteChangeAction(
+            @PathVariable String uuid,
+            @ModelAttribute @Valid NoteForm form,
+            BindingResult result
+    ) {
+        if (result.hasErrors()) {
+            return new ModelAndView("note-change")
+                    .addObject("error", result.getAllErrors())
+                    .addObject("noteForm", new NoteForm());
+        }
+        Note note = noteService.findNoteByUuid(uuid);
+        Note changedNote = noteService.changeNote(form, note);
+        noteService.save(changedNote);
+
+        return RedirectUtil.redirect("/note/{uuid}");
     }
 }
